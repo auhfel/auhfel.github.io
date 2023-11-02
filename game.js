@@ -22,7 +22,7 @@ function gameUpdate(deltaTime) {
     graphics.addVertexData(-.5, -.5, .1);
     graphics.addVertexData(0.5, -.5, .5);
     graphics.drawSquare(.5,-1,.5,1);
-    //graphics.drawLine(-.95,.95,.95,-.95,.05,.5);
+    graphics.drawLine(-.95,.95,.95,-.95,.05,.5);
     if (input.getKeyDown('q')) {
         engine.exit();
     }

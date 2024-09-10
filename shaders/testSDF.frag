@@ -15,7 +15,7 @@ float sceneSDF(vec3 point);
 vec3 getNormal(vec3 point);
 void main() {
 
-    float speed = 3.0;
+    float speed = 9.0;
     //put into range -1..1
     vec3 cameraPosition = cameraOrigin + vec3(.0,0.1,1.0)*(timeSinceStart/1000.0)*speed;
 

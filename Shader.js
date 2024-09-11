@@ -84,7 +84,7 @@ class Shader{
 
     }
     static async #LoadShader(shaderName) {
-        return (await fetch('http://localhost:8080/'+shaderName)).text();
+        return (await fetch('https://auhfel.github.io/'+shaderName)).text();
     }
     static #CheckForShaderErrors(shader, shaderTypeInText) {
         let compiled = gl.getShaderParameter(shader, gl.COMPILE_STATUS);

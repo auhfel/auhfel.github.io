@@ -4,7 +4,7 @@ document.body.style.margin = "0";
 let aspectRatio = window.innerWidth / window.innerHeight;
 let canvas = document.createElement("canvas");
 //width and height here set render size
-let scaler = 1.6;
+let scaler = 3.0;
 canvas.width =  300 * scaler;
 canvas.height = 200 * scaler;
 //width and height here stretches it to fit screen

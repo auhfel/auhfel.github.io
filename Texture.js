@@ -1,9 +1,7 @@
-
 class Texture {
-
     static async Initialize() {
         this.offscreenFrameBuffer = gl.createFramebuffer();
-        this.TextureToScreenShader = await Shader.Create("fullscreenBlit.vert","textureToScreen.frag");
+        this.TextureToScreenShader = await Shader.Create("screenSpace.vert","textureToScreen.frag");
         this.screenVAO = this.CreateScreenVAO(this.TextureToScreenShader);
         
     }
@@ -33,7 +31,7 @@ class Texture {
 
         gl.clear(gl.COLOR_BUFFER_BIT);
         shader.Use();
-        shader.SetFloat("dimensions", [textureObject.width,textureObject.height]);
+        shader.SetFloat("dimensions", textureObject.width,textureObject.height);
         gl.bindVertexArray(this.screenVAO);
 
         gl.drawArrays(gl.TRIANGLES, 0, 6);
@@ -44,7 +42,7 @@ class Texture {
         gl.bindFramebuffer(gl.FRAMEBUFFER,null);
         let shader = this.TextureToScreenShader;
         shader.Use();
-        shader.SetFloat("dimensions", [textureObject.width, textureObject.height]);
+        shader.SetFloat("dimensions", textureObject.width, textureObject.height);
         shader.SetTexture("texture",textureObject.id);
         gl.bindFramebuffer(gl.FRAMEBUFFER,null);
         gl.bindVertexArray(this.screenVAO);
@@ -87,4 +85,3 @@ class Texture {
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
     }
 }
-Texture.Initialize();

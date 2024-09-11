@@ -17,20 +17,20 @@ class Shader{
         }
         return this.uniformLocations.get(uniformName);
     }
-    SetFloat(uniformName, values) {
+    SetFloat(uniformName, first, second = null,third = null,fourth = null) {
         let uniformLocation = this.GetUniformLocation(uniformName);
-        switch (values.length) {
+        switch (arguments.length - 1) {
             case 1:
-                gl.uniform1f(uniformLocation, values[0]);
+                gl.uniform1f(uniformLocation, first);
                 break;
             case 2:
-                gl.uniform2f(uniformLocation, values[0], values[1]);
+                gl.uniform2f(uniformLocation, first, second);
                 break;
             case 3:
-                gl.uniform3f(uniformLocation, values[0], values[1], values[2]);
+                gl.uniform3f(uniformLocation, first, second, third);
                 break;
             case 4:
-                gl.uniform4f(uniformLocation, values[0], values[1], values[2], values[3]);
+                gl.uniform4f(uniformLocation, first, second, third, fourth);
                 break;
             default:
                 console.log("Error: Can't set uniform with 0 or less or more than 4 values");
@@ -38,20 +38,20 @@ class Shader{
         }
 
     }
-    SetInt(uniformName, values) {
+    SetInt(uniformName, first, second = null,third = null,fourth = null) {
         let uniformLocation = this.GetUniformLocation(uniformName);
-        switch (values.length) {
+        switch (arguments.length - 1) {
             case 1:
-                gl.uniform1i(uniformLocation, values[0]);
+                gl.uniform1i(uniformLocation, first);
                 break;
             case 2:
-                gl.uniform2i(uniformLocation, values[0], values[1]);
+                gl.uniform2i(uniformLocation, first, second);
                 break;
             case 3:
-                gl.uniform3i(uniformLocation, values[0], values[1], values[2]);
+                gl.uniform3i(uniformLocation, first, second, third);
                 break;
             case 4:
-                gl.uniform4i(uniformLocation, values[0], values[1], values[2], values[3]);
+                gl.uniform4i(uniformLocation, first, second, third, fourth);
                 break;
             default:
                 console.log("Error: Can't set uniform with 0 or less or more than 4 values");
@@ -84,7 +84,7 @@ class Shader{
 
     }
     static async #LoadShader(shaderName) {
-        return (await fetch('https://auhfel.github.io/shaders/'+shaderName)).text();
+        return (await fetch('http://localhost:8080/'+shaderName)).text();
     }
     static #CheckForShaderErrors(shader, shaderTypeInText) {
         let compiled = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
